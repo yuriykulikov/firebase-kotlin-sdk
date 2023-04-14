@@ -50,6 +50,8 @@ kotlin {
         publishAllLibraryVariants()
     }
 
+    jvm("admin")
+
     if (supportIosTarget) {
         ios()
         iosSimulatorArm64()
@@ -105,6 +107,14 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 api("com.google.firebase:firebase-database")
+            }
+        }
+
+        val adminMain by getting {
+            dependencies {
+                dependencies {
+                    api( "com.google.firebase:firebase-admin:${extra["firebase-admin.version"]}")
+                }
             }
         }
 

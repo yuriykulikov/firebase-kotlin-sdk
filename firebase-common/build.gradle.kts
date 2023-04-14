@@ -46,6 +46,8 @@ kotlin {
         publishAllLibraryVariants()
     }
 
+    jvm("admin")
+
     val supportIosTarget = project.property("skipIosTarget") != "true"
 
     if (supportIosTarget) {
@@ -93,6 +95,13 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 api("com.google.firebase:firebase-common")
+            }
+        }
+
+        val adminMain by getting {
+            kotlin.srcDir("src/androidMain/kotlin")
+            dependencies {
+                api( "com.google.firebase:firebase-admin:${extra["firebase-admin.version"]}")
             }
         }
 
